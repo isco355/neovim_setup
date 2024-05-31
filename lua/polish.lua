@@ -21,12 +21,14 @@ vim.filetype.add {
     command = "Neotree toggle",
   })
 
+ 
 
-vim.o.timeoutlen = 100
+vim.o.timeoutlen = 10
 
 require("neo-tree").setup({
    window = {
-        position = "right",} 
+        position = "right",
+  }
 })
 
 vim.keymap.set(
@@ -48,29 +50,3 @@ vim.keymap.set(
 	{ desc = "Spider-b" }
 )
 
-require("neo-tree").setup({
-  filesystem = {
-    window = {
-      mappings = {
-        ["o"] = "system_open",
-      },
-    },
-  },
-  commands = {
-    system_open = function(state)
-      local node = state.tree:get_node()
-      local path = node:get_id()
-      -- macOs: open file in default application in the background.
-      vim.fn.jobstart({ "open", "-g", path }, { detach = true })
-  local p
-  local lastSlashIndex = path:match("^.+()\\[^\\]*$") -- Match the last slash and everything before it
-  if lastSlashIndex then
-  	p = path:sub(1, lastSlashIndex - 1) -- Extract substring before the last slash
-  else
-  	p = path -- If no slash found, return original path
-      end
-  vim.cmd("silent !start explorer " .. p)
-    end,
-  },
-})
- 

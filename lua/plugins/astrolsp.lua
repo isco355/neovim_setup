@@ -6,8 +6,23 @@ if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 --       as this provides autocomplete and documentation while editing
 
 ---@type LazySpec
-return
- {
+--
+return {
+  "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
+  opts = {
+    formatting = {
+      format_on_save = true, -- enable or disable automatic formatting on save
+      timeout_ms = 3200, -- adjust the timeout_ms variable for formatting
+      filter = function(client)
+        if vim.bo.filetype == "lua" then return client.name == "lua_language_server" end
+
+        -- enable all other clients
+        return true
+      end,
+    },
+  },
+}, {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
@@ -16,15 +31,14 @@ return
       timeout_ms = 3200, -- adjust the timeout_ms variable for formatting
       disabled = { "lua_ls" },
       filter = function(client)
-        -- only enable null-ls for javascript files
-        if vim.bo.filetype == "python" then
-          return client.name == "pythonlsp"
-        end
+        if vim.bo.filetype == "python" then return client.name == "pythonlsp" end
 
         -- enable all other clients
         return true
       end,
-    }}},{
+    },
+  },
+}, {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
@@ -33,16 +47,14 @@ return
       timeout_ms = 3200, -- adjust the timeout_ms variable for formatting
       disabled = { "lua_ls" },
       filter = function(client)
-        -- only enable null-ls for javascript files
-        if vim.bo.filetype == "r" then
-          return client.name == "r_language_server"
-        end
+        if vim.bo.filetype == "r" then return client.name == "r_language_server" end
 
         -- enable all other clients
         return true
       end,
-    }}},
-  {
+    },
+  },
+}, {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
