@@ -18,17 +18,12 @@ vim.filetype.add {
 }
 
 vim.opt.relativenumber = false
+
 vim.api.nvim_create_autocmd("VimEnter", {
-  command = "Neotree toggle",
+  command = "Neotree source=filesystem focus",
 })
 
 vim.o.timeoutlen = 10
-
-require("neo-tree").setup {
-  window = {
-    position = "right",
-  },
-}
 
 vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
 vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
