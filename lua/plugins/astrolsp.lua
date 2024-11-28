@@ -29,9 +29,10 @@ return {
     formatting = {
       format_on_save = true, -- enable or disable automatic formatting on save
       timeout_ms = 3200, -- adjust the timeout_ms variable for formatting
-      disabled = { "lua_ls" },
+      -- disabled = { "lua_ls" },
       filter = function(client)
         if vim.bo.filetype == "python" then return client.name == "pythonlsp" end
+        -- if vim.bo.filetype == "python" then return client.name == "basedpyright" end
 
         -- enable all other clients
         return true
@@ -58,11 +59,29 @@ return {
   "AstroNvim/astrolsp",
   ---@type AstroLSPOpts
   opts = {
+    features = {
+      -- inlay_hints = true, -- enable inlay hints globally on startup
+    },
+    formatting = {
+      format_on_save = true, -- enable or disable automatic formatting on save
+      timeout_ms = 3200, -- adjust the timeout_ms variable for formatting
+      filter = function(client)
+        if vim.bo.filetype == "typescipt" then return client.name == "tsserver" end
+
+        -- enable all other clients
+        return true
+      end,
+    },
+  },
+}, {
+  "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
+  opts = {
     -- Configuration table of features provided by AstroLSP
     features = {
       autoformat = true, -- enable or disable auto formatting on start
       codelens = true, -- enable/disable codelens refresh on start
-      inlay_hints = false, -- enable/disable inlay hints on start
+      inlay_hints = true, -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
     },
     -- customize lsp formatting options
