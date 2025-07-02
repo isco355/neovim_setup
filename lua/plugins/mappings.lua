@@ -9,7 +9,10 @@ return {
           -- second key is the lefthand side of the map
           -- Enter seen under group name "Buffer"
           ["<leader>rr"] = { "<cmd>AstroReload<cr>", desc = "AstroReload" },
-          ["t"] = { "<cmd>wa | 2TermExec cmd='r' size=80 direction=vertical<cr>", desc = "quick run(terminal)" },
+
+          ["t"] = { "<cmd>ToggleTerm size=80 direction=vertical<cr> ", desc = "quick run(terminal)" },
+          ["T"] = { "<cmd>ToggleTerm  size=80 direction=float<cr>", desc = "quick run(terminal)" },
+
           ["<Leader>rt"] = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", desc = "quick terminal" },
           ["<Leader>w"] = { "<cmd>wa<cr>", desc = "save all files" },
           ["<Leader>ya"] = { "<cmd>%y+<cr>", desc = "yank all whole file" },

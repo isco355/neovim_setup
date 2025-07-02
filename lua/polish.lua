@@ -32,5 +32,8 @@ vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<C
 vim.api.nvim_set_keymap("n", "-", "<cmd>vertical resize -10<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "=", "<cmd>vertical resize +10<CR>", { noremap = true, silent = true })
 
+vim.api.nvim_set_keymap("t", "<C-T>", '<cmd>ToggleTerm<CR>"', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("t", "<C-T>", '<C-\\><C-N> <cmd>ToggleTerm<CR>"', { noremap = true, silent = true })
 --
 --
+require("telescope").load_extension "remote-sshfs"

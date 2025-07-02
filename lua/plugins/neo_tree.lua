@@ -13,7 +13,9 @@ return {
   opts = {
 
     sources = { "filesystem", "buffers", "git_status" },
-    window = { position = "right", width = 60 },
+    window = { position = "right", width = 60, mapping = {
+      ["t"] = "close",
+    } },
     filesystem = {
       filtered_items = {
         hide_gitignored = true,

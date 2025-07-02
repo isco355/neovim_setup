@@ -15,6 +15,21 @@ return {
       format_on_save = true, -- enable or disable automatic formatting on save
       timeout_ms = 3200, -- adjust the timeout_ms variable for formatting
       filter = function(client)
+        if vim.bo.filetype == "cpp" then return client.name == "clangd" end
+
+        -- enable all other clients
+        return true
+      end,
+    },
+  },
+}, {
+  "AstroNvim/astrolsp",
+  ---@type AstroLSPOpts
+  opts = {
+    formatting = {
+      format_on_save = true, -- enable or disable automatic formatting on save
+      timeout_ms = 3200, -- adjust the timeout_ms variable for formatting
+      filter = function(client)
         if vim.bo.filetype == "lua" then return client.name == "lua_language_server" end
 
         -- enable all other clients
